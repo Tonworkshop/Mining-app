@@ -2,162 +2,45 @@ const tg = window.Telegram?.WebApp;
 if (tg) {
   tg.ready();
   tg.expand();
-  tg.setHeaderColor("#0b0806");
-  tg.setBackgroundColor("#090604");
+  tg.setHeaderColor("#0b1018");
+  tg.setBackgroundColor("#05090e");
 }
 
-const workers = [
-  { level: 1, name: "Classic Duck", icon: "🐤", cost: 0.17, daily: 0.0015, total: 0.5475, stock: 10, colors: ["#3c74fc", "#7775ff"] },
-  { level: 2, name: "Copper Duck", icon: "🦆", cost: 0.28, daily: 0.006, total: 2.19, stock: 10, colors: ["#8a5a26", "#d88f43"] },
-  { level: 3, name: "Sailor Duck", icon: "⚓", cost: 0.5, daily: 0.012, total: 4.38, stock: 10, colors: ["#2c4966", "#5b82a2"] },
-  { level: 4, name: "Builder Duck", icon: "👷", cost: 1.05, daily: 0.03, total: 10.9, stock: 10, colors: ["#946118", "#e8a53b"] },
-  { level: 5, name: "Miner Duck", icon: "⛏", cost: 1.7, daily: 0.052, total: 18.98, stock: 10, colors: ["#2f6b58", "#4cb894"] },
-  { level: 6, name: "Commander Duck", icon: "🪖", cost: 2.9, daily: 0.09, total: 32.85, stock: 10, colors: ["#4a5b2d", "#738e4a"] },
-  { level: 7, name: "Cyber Duck", icon: "🤖", cost: 4.7, daily: 0.145, total: 52.92, stock: 10, colors: ["#2c4899", "#41afff"] },
-  { level: 8, name: "Auric Duck", icon: "✦", cost: 7.5, daily: 0.24, total: 87.6, stock: 10, colors: ["#8342a3", "#da7cff"] },
-  { level: 9, name: "Quantum Duck", icon: "🪐", cost: 11.8, daily: 0.41, total: 149.65, stock: 10, colors: ["#533195", "#8868ef"] },
-  { level: 10, name: "Nova Duck", icon: "✨", cost: 19, daily: 0.69, total: 251.85, stock: 10, colors: ["#3c5db6", "#67d3f8"] },
-  { level: 11, name: "Myth", icon: "◉", cost: 70, daily: 7.125, total: 2600.625, stock: 10, colors: ["#3f53cb", "#4ba1ff"] },
-  { level: 12, name: "Aurora", icon: "▤", cost: 95, daily: 10.875, total: 3969.375, stock: 10, colors: ["#0e9fb5", "#4ef5b4"] },
-  { level: 13, name: "Cosmos", icon: "⌁", cost: 141, daily: 18.375, total: 6706.875, stock: 10, colors: ["#612fab", "#9550ff"] },
-  { level: 14, name: "Nebula", icon: "✳", cost: 186, daily: 27.75, total: 10128.75, stock: 10, colors: ["#af3ba7", "#fd77cc"] },
-  { level: 15, name: "Titan", icon: "∞", cost: 281, daily: 43.5, total: 15877.5, stock: 10, colors: ["#cc4d29", "#ff9f1d"] },
-];
-
-const initialTasks = [
-  {
-    id: "social-1",
-    category: "SOCIAL",
-    title: "Join Duck's Empire Info",
-    description: "Follow the official Duck's Empire info channel.",
-    reward: 0.03,
-    link: "https://t.me/telegram",
-    icon: "✈",
-  },
-  {
-    id: "social-2",
-    category: "SOCIAL",
-    title: "Join Duck's Empire Payouts",
-    description: "See real withdrawal proofs from duck farmers.",
-    reward: 0.03,
-    link: "https://t.me/telegram",
-    icon: "✈",
-  },
-  {
-    id: "collab-1",
-    category: "COLLABORATION",
-    title: "Join Best Miner Earn TON",
-    description: "Start mining with our partner ecosystem bot.",
-    reward: 0.03,
-    link: "https://t.me/telegram",
-    icon: "⚙",
-  },
-  {
-    id: "collab-2",
-    category: "COLLABORATION",
-    title: "Join Hyper Empire Earn TON",
-    description: "Unlock cross-campaign rewards and boosts.",
-    reward: 0.03,
-    link: "https://t.me/telegram",
-    icon: "⚙",
-  },
-];
-
-const premiumPlans = [
-  {
-    id: "basic",
-    name: "Basic Plan",
-    badge: "-57%",
-    period: "30 days",
-    price: 4.9,
-    oldPrice: 11.5,
-    boost: 1.1,
-    perks: [
-      "10% profit boost on all workers",
-      "Daily loyalty bonus: +0.004 TON",
-      "+12% deposit commission from referrals",
-      "Priority support",
-    ],
-  },
-  {
-    id: "pro",
-    name: "Bronze Member",
-    badge: "-57%",
-    period: "30 days",
-    price: 11.5,
-    oldPrice: 26.7,
-    boost: 1.24,
-    perks: [
-      "24% profit boost on all workers",
-      "Daily loyalty bonus: +0.10 TON",
-      "Extra milestone rewards",
-      "VIP task access",
-    ],
-  },
-];
-
 const state = {
-  activeTab: "empire",
-  balance: 0.0015,
-  referrals: 1,
-  perInviteReward: 0.0015,
-  premiumPlan: "free",
+  activeTab: "power",
+  balance: 0.058024,
+  powerGpu: 30000,
+  minedHashes: 181.53673,
+  spendUsd: 3,
+  firstDepositBonus: true,
+  startTime: Date.now(),
+  machineLevel: 1,
+  selectedWithdraw: "TON",
+  tasks: [
+    { id: "t1", title: "Invite 50 friends", rewardGpu: 5500, current: 36, target: 50, icon: "✈" },
+    { id: "t2", title: "Invite 100 friends", rewardGpu: 13250, current: 36, target: 100, icon: "✈" },
+    { id: "t3", title: "Invite 200 friends", rewardGpu: 32500, current: 36, target: 200, icon: "✈" },
+    { id: "t4", title: "Top Up Balance: $5", rewardGpu: 10000, current: 0, target: 5, icon: "▦" },
+  ],
   operations: [],
-  inviteCode: `F${Math.floor(10000 + Math.random() * 89999)}`,
-  owned: Object.fromEntries(workers.map((worker) => [worker.level, 0])),
-  tasks: initialTasks.map((task) => ({ ...task, done: false })),
 };
+
+const withdrawMethods = [
+  { key: "TRON", name: "TRON", network: "Tron", min: 0.02, symbol: "🔴" },
+  { key: "BNB", name: "BNB", network: "BEP 20", min: 0.02, symbol: "🟡" },
+  { key: "TON", name: "TON Coin", network: "TON", min: 0.02, symbol: "🔵" },
+  { key: "LTC", name: "Litecoin", network: "LTC", min: 0.05, symbol: "🔷" },
+];
 
 const viewContainer = document.getElementById("viewContainer");
 const balanceLabel = document.getElementById("balanceValue");
 const toastEl = document.getElementById("toast");
 
-function formatTon(value, maximumFractionDigits = 4) {
+function formatNumber(value, maxFraction = 2) {
   return Number(value).toLocaleString("en-US", {
     minimumFractionDigits: 0,
-    maximumFractionDigits,
+    maximumFractionDigits: maxFraction,
   });
-}
-
-function getDisplayName() {
-  const user = tg?.initDataUnsafe?.user;
-  if (!user) return "Duck Worker";
-  return [user.first_name, user.last_name].filter(Boolean).join(" ");
-}
-
-function getActivePlan() {
-  return premiumPlans.find((plan) => plan.id === state.premiumPlan);
-}
-
-function getBoostMultiplier() {
-  return getActivePlan()?.boost || 1;
-}
-
-function getTotalWorkersOwned() {
-  return Object.values(state.owned).reduce((sum, item) => sum + item, 0);
-}
-
-function getDailyProfit() {
-  const base = workers.reduce((sum, worker) => sum + worker.daily * state.owned[worker.level], 0);
-  return base * getBoostMultiplier();
-}
-
-function getTotalProjection() {
-  const base = workers.reduce((sum, worker) => sum + worker.total * state.owned[worker.level], 0);
-  return base * getBoostMultiplier();
-}
-
-function getAvailableTaskReward() {
-  return state.tasks.filter((task) => !task.done).reduce((sum, task) => sum + task.reward, 0);
-}
-
-function isUnlocked(level) {
-  if (level === 1) return true;
-  return state.owned[level - 1] > 0;
-}
-
-function haptic(type = "light") {
-  tg?.HapticFeedback?.impactOccurred(type);
 }
 
 function showToast(message) {
@@ -167,29 +50,104 @@ function showToast(message) {
   showToast.timer = window.setTimeout(() => toastEl.classList.remove("show"), 1800);
 }
 
-function pushOperation(title, amount) {
+function haptic(kind = "light") {
+  tg?.HapticFeedback?.impactOccurred(kind);
+}
+
+function pushOperation(type, amount) {
   state.operations.unshift({
-    title,
+    type,
     amount,
     time: new Date().toLocaleTimeString("tr-TR", { hour: "2-digit", minute: "2-digit" }),
   });
-  state.operations = state.operations.slice(0, 8);
+  state.operations = state.operations.slice(0, 6);
 }
 
-function deposit(amount) {
-  if (!Number.isFinite(amount) || amount <= 0) {
-    showToast("Geçerli TON miktarı gir.");
+function getPowerFromSpend() {
+  return state.spendUsd * 10000;
+}
+
+function getFirstDepositBonus() {
+  return state.firstDepositBonus ? getPowerFromSpend() * 0.25 : 0;
+}
+
+function getTotalPowerAfterBuy() {
+  return getPowerFromSpend() + getFirstDepositBonus();
+}
+
+function getInterestRate() {
+  return 1.92;
+}
+
+function getDailyProfitHashes() {
+  return (state.powerGpu / 10000) * 244;
+}
+
+function getMonthlyProfitHashes() {
+  return getDailyProfitHashes() * 30;
+}
+
+function getSixMonthProfitHashes() {
+  return getMonthlyProfitHashes() * 6;
+}
+
+function getMiningElapsedSeconds() {
+  return Math.floor((Date.now() - state.startTime) / 1000);
+}
+
+function formatTimer(seconds) {
+  const h = String(Math.floor(seconds / 3600)).padStart(2, "0");
+  const m = String(Math.floor((seconds % 3600) / 60)).padStart(2, "0");
+  const s = String(seconds % 60).padStart(2, "0");
+  return `${h}:${m}:${s}`;
+}
+
+function buyPower() {
+  const spend = Number(state.spendUsd);
+  if (!Number.isFinite(spend) || spend <= 0) {
+    showToast("Geçerli USD miktarı gir.");
     return;
   }
-  state.balance += amount;
-  pushOperation("Deposit", amount);
-  showToast(`+${formatTon(amount)} TON yatırıldı`);
+  const totalPower = getTotalPowerAfterBuy();
+  const balanceCost = spend / 100;
+  if (state.balance < balanceCost) {
+    showToast(`Yetersiz bakiye. ${formatNumber(balanceCost, 4)} TON gerekli.`);
+    return;
+  }
+  state.balance -= balanceCost;
+  state.powerGpu += totalPower;
+  state.firstDepositBonus = false;
+  pushOperation("Power purchase", -balanceCost);
+  haptic("medium");
+  showToast(`${formatNumber(totalPower, 0)} GPU eklendi`);
   render();
 }
 
-function withdraw(amount) {
+function exchangeHashes() {
+  if (state.minedHashes < 1) {
+    showToast("Exchange için yeterli hash yok.");
+    return;
+  }
+  const exchanged = Math.min(state.minedHashes, 25);
+  state.minedHashes -= exchanged;
+  const ton = exchanged / 200;
+  state.balance += ton;
+  pushOperation("Hashes exchanged", ton);
+  showToast(`${formatNumber(exchanged, 2)} Hash -> +${formatNumber(ton, 4)} TON`);
+  render();
+}
+
+function requestWithdraw() {
+  const amountInput = document.getElementById("withdrawAmount");
+  const amount = Number(amountInput?.value || 0);
+  const method = withdrawMethods.find((item) => item.key === state.selectedWithdraw);
+  if (!method) return;
   if (!Number.isFinite(amount) || amount <= 0) {
-    showToast("Geçerli TON miktarı gir.");
+    showToast("Geçerli çekim tutarı gir.");
+    return;
+  }
+  if (amount < method.min) {
+    showToast(`Minimum çekim: ${method.min} USDT`);
     return;
   }
   if (amount > state.balance) {
@@ -197,348 +155,270 @@ function withdraw(amount) {
     return;
   }
   state.balance -= amount;
-  pushOperation("Withdraw", -amount);
-  showToast(`${formatTon(amount)} TON çekim isteği alındı`);
+  pushOperation(`Withdraw ${method.name}`, -amount);
+  showToast(`${method.name} çekim talebi alındı`);
   render();
 }
 
-function hireWorker(level) {
-  const worker = workers.find((item) => item.level === level);
-  if (!worker) return;
-  if (!isUnlocked(level)) {
-    showToast(`Önce LV.${level - 1} worker al.`);
-    return;
-  }
-  if (state.owned[level] >= worker.stock) {
-    showToast("Bu worker seviyesinde stok sınırına ulaştın.");
-    return;
-  }
-  if (state.balance < worker.cost) {
-    showToast(`${formatTon(worker.cost - state.balance)} TON eksik.`);
-    return;
-  }
-  state.balance -= worker.cost;
-  state.owned[level] += 1;
-  pushOperation(`${worker.name} purchase`, -worker.cost);
-  haptic("medium");
-  showToast(`${worker.name} eklendi`);
+function simulateEarn() {
+  const gain = getDailyProfitHashes() / 1440;
+  state.minedHashes += gain;
+  showToast(`+${formatNumber(gain, 3)} Hash mined`);
   render();
 }
 
 function completeTask(taskId) {
   const task = state.tasks.find((item) => item.id === taskId);
-  if (!task || task.done) return;
-  task.done = true;
-  state.balance += task.reward;
-  pushOperation("Task reward", task.reward);
-  window.open(task.link, "_blank", "noopener,noreferrer");
-  showToast(`Task tamamlandı: +${formatTon(task.reward)} TON`);
-  render();
-}
-
-function subscribeToPlan(planId) {
-  const plan = premiumPlans.find((item) => item.id === planId);
-  if (!plan) return;
-  if (state.premiumPlan === plan.id) {
-    showToast("Bu plan zaten aktif.");
+  if (!task) return;
+  if (task.current >= task.target) {
+    showToast("Bu görev zaten tamamlandı.");
     return;
   }
-  if (state.balance < plan.price) {
-    showToast(`Plan için ${formatTon(plan.price, 2)} TON gerekli.`);
-    return;
+  task.current = Math.min(task.target, task.current + Math.ceil(task.target * 0.14));
+  if (task.current >= task.target) {
+    state.powerGpu += task.rewardGpu;
+    showToast(`Task complete! +${formatNumber(task.rewardGpu, 0)} GPU`);
+    pushOperation("Task reward", task.rewardGpu / 100000);
+  } else {
+    showToast("İlerleme artırıldı.");
   }
-  state.balance -= plan.price;
-  state.premiumPlan = plan.id;
-  pushOperation(`${plan.name} subscribe`, -plan.price);
-  showToast(`${plan.name} aktif oldu`);
   render();
 }
 
-function simulateReferral() {
-  state.referrals += 1;
-  state.balance += state.perInviteReward;
-  pushOperation("Referral reward", state.perInviteReward);
-  showToast("Yeni referral bonusu eklendi");
-  render();
+function renderTopPanel() {
+  return `
+    <section class="hero-card">
+      <h2>${state.activeTab === "power" ? "Power Shop" : state.activeTab.charAt(0).toUpperCase() + state.activeTab.slice(1)}</h2>
+      <p>${state.activeTab === "power" ? "Enter the sum you want to use for buying mining power." : "High performance mining control panel."}</p>
+    </section>
+  `;
 }
 
-function workerButton(worker, owned, unlocked) {
-  const affordable = state.balance >= worker.cost;
-  const hasSlot = owned < worker.stock;
-  if (!unlocked) return `<button class="action-btn secondary" disabled>🔒 LOCKED</button>`;
-  if (affordable && hasSlot) return `<button class="action-btn primary" data-hire="${worker.level}">Hire worker</button>`;
-  if (!hasSlot) return `<button class="action-btn secondary" disabled>Limit reached</button>`;
-  return `<button class="action-btn secondary" disabled>Need ${formatTon(worker.cost, 3)} TON</button>`;
+function renderPowerView() {
+  return `
+    ${renderTopPanel()}
+    <section class="panel power-panel">
+      <div class="input-line">
+        <input id="usdAmount" class="amount-input" type="number" min="1" step="1" value="${state.spendUsd}" />
+        <span class="unit">USD</span>
+      </div>
+      <div class="calc-title">PROFIT CALCULATOR</div>
+      <div class="calc-card">
+        <div class="calc-row"><span>Power:</span><strong>${formatNumber(getPowerFromSpend(), 0)} GPU</strong></div>
+        <div class="calc-row green"><span>+25% for 1st deposit:</span><strong>${formatNumber(getFirstDepositBonus(), 0)} GPU</strong></div>
+        <div class="calc-row yellow"><span>Total power:</span><strong>${formatNumber(getTotalPowerAfterBuy(), 0)} GPU</strong></div>
+        <div class="calc-row"><span>Interest rate:</span><strong>${formatNumber(getInterestRate(), 2)}% Profit per day</strong></div>
+        <div class="calc-row"><span>Profit per day:</span><strong>${formatNumber(getDailyProfitHashes(), 0)} Hash</strong></div>
+        <div class="calc-row"><span>Profit per month:</span><strong>${formatNumber(getMonthlyProfitHashes(), 0)} Hash</strong></div>
+        <div class="calc-row"><span>Profit over 6 months:</span><strong>${formatNumber(getSixMonthProfitHashes(), 0)} Hash</strong></div>
+      </div>
+      <button id="buyPowerBtn" class="primary-btn">PAY</button>
+    </section>
+
+    <section class="panel unlock-panel">
+      <div>
+        <h3>Next mining machine</h3>
+        <p>Power to unlock: ${formatNumber((state.machineLevel + 1) * 226400, 0)} GPU</p>
+      </div>
+      <div class="machine-art">🖥</div>
+      <button class="ghost-btn" id="unlockBtn">UNLOCK</button>
+    </section>
+  `;
 }
 
-function renderEmpireView() {
-  const dailyProfit = getDailyProfit();
-  const totalProjection = getTotalProjection();
-  const workerCards = workers
-    .map((worker) => {
-      const [c1, c2] = worker.colors;
-      const owned = state.owned[worker.level];
-      const unlocked = isUnlocked(worker.level);
+function renderMinerView() {
+  return `
+    ${renderTopPanel()}
+    <section class="panel miner-timer">
+      <span>MINING STARTED</span>
+      <strong id="miningClock">${formatTimer(getMiningElapsedSeconds())}</strong>
+    </section>
+    <section class="panel machine-panel">
+      <div class="machine-art big">⚙</div>
+      <div class="hash-pill">${formatNumber(state.minedHashes, 5)} Hashes</div>
+    </section>
+    <section class="panel">
+      <div class="stats-line"><span>Current power</span><strong>${formatNumber(state.powerGpu, 0)} GPU</strong></div>
+      <button class="accent-btn" data-tab-jump="power">Buy power in the store</button>
+      <p class="footnote">*Exchange Hashes to USDT to withdraw money</p>
+      <div class="stats-line"><span>Mined Hashes</span><strong>${formatNumber(state.minedHashes, 5)}</strong></div>
+      <div class="row-btns">
+        <button id="exchangeBtn" class="primary-btn">Exchange</button>
+        <button id="simulateMineBtn" class="ghost-btn">Mine +</button>
+      </div>
+    </section>
+    <section class="panel">
+      <div class="task-mini">
+        <div class="task-icon">✈</div>
+        <div>
+          <strong>Invite 50 friends</strong>
+          <p>Reward: 5500 GPU</p>
+        </div>
+        <div class="chip-progress">${state.tasks[0].current}/${state.tasks[0].target}</div>
+      </div>
+    </section>
+  `;
+}
+
+function renderWithdrawView() {
+  const methodsHtml = withdrawMethods
+    .map((method) => {
+      const active = state.selectedWithdraw === method.key;
       return `
-        <article class="worker-card ${unlocked ? "" : "locked"}">
-          <div class="worker-icon" style="background:linear-gradient(145deg, ${c1}, ${c2})">${worker.icon}</div>
-          <div class="worker-info">
-            <h3>${worker.name} <span class="level">LV.${worker.level}</span></h3>
-            <div class="period">Period: 365 Days</div>
-            <div class="worker-stats">
-              <div><strong>COST</strong><span>💎 ${formatTon(worker.cost, 3)}</span></div>
-              <div><strong>DAILY PROFIT</strong><span class="profit">💎 ${formatTon(worker.daily, 4)}</span></div>
-              <div><strong>TOTAL PROFIT</strong><span>💎 ${formatTon(worker.total, 4)}</span></div>
-            </div>
+        <button class="withdraw-method ${active ? "active" : ""}" data-method="${method.key}">
+          <div class="method-head">
+            <span>${method.symbol}</span>
+            <strong>${method.name}</strong>
           </div>
-          <div class="worker-cta">
-            <div class="stock">${owned}/${worker.stock}</div>
-            ${workerButton(worker, owned, unlocked)}
-          </div>
-        </article>
+          <div class="method-sub">${method.network}</div>
+          <div class="method-min">[Min. ${method.min} USDT]</div>
+        </button>
       `;
     })
     .join("");
 
   return `
-    <section class="panel profile-card">
-      <div class="avatar"></div>
-      <div class="profile-meta">
-        <h2>${getDisplayName()}</h2>
-        <p class="subtitle">Duck's Empire • New Member</p>
-      </div>
-      <div class="tag">${state.premiumPlan === "free" ? "Bronze" : "Premium"}</div>
+    ${renderTopPanel()}
+    <section class="panel promo-bar">
+      Pay using the balance to increase power and receive a bonus +5%!
+      <button class="ghost-btn mini" data-tab-jump="power">MORE DETAILS</button>
     </section>
-
-    <section class="stat-grid">
-      <article class="panel stat-card">
-        <div class="stat-label">Duck Workers</div>
-        <div class="stat-value">${getTotalWorkersOwned()}</div>
-      </article>
-      <article class="panel stat-card">
-        <div class="stat-label">Daily Profit</div>
-        <div class="stat-value green">${formatTon(dailyProfit, 4)}</div>
-      </article>
-      <article class="panel stat-card">
-        <div class="stat-label">Total Profit</div>
-        <div class="stat-value">${formatTon(totalProjection, 4)}</div>
-      </article>
-    </section>
-
-    <div class="section-title">Duck Workers</div>
-    <section class="worker-list">${workerCards}</section>
-  `;
-}
-
-function renderWalletView() {
-  const operationRows = state.operations.length
-    ? state.operations
-        .map(
-          (operation) => `
-            <div class="invite-box">
-              <div>
-                <strong>${operation.title}</strong>
-                <div class="tiny">${operation.time}</div>
-              </div>
-              <div class="${operation.amount >= 0 ? "op-amount-positive" : ""}">
-                ${operation.amount >= 0 ? "+" : ""}${formatTon(operation.amount, 4)} TON
-              </div>
-            </div>
-          `
-        )
-        .join("")
-    : `<p class="tiny">Henüz işlem geçmişi yok.</p>`;
-
-  return `
-    <section class="wallet-card">
-      <h2 class="panel-title">Wallet</h2>
-      <p class="panel-subtitle">Invest, deposit and request withdrawals.</p>
-      <div class="premium-price">
-        <span>Current balance</span>
-        <b>${formatTon(state.balance, 4)}</b>
+    <section class="panel">
+      <h2 class="section-heading">Withdraw funds</h2>
+      <p class="section-caption">Choose a convenient withdrawal method:</p>
+      <div class="methods-grid">${methodsHtml}</div>
+      <div class="withdraw-form">
+        <input id="withdrawAmount" type="number" min="0" step="0.001" placeholder="Amount (USDT / TON)" />
+        <button id="withdrawBtn" class="primary-btn">Request Withdraw</button>
       </div>
-      <div class="wallet-actions">
-        <input id="walletAmount" type="number" min="0" step="0.001" placeholder="Amount in TON (e.g. 0.25)" />
-        <button id="depositBtn" class="action-btn primary block">Deposit</button>
-        <button id="withdrawBtn" class="action-btn secondary block">Withdraw</button>
-      </div>
-    </section>
-    <section class="wallet-card">
-      <h3>Recent operations</h3>
-      ${operationRows}
     </section>
   `;
 }
 
 function renderTasksView() {
-  const categories = ["SOCIAL", "COLLABORATION"];
-  const content = categories
-    .map((category) => {
-      const tasks = state.tasks.filter((task) => task.category === category);
-      return `
-        <div class="category-head">${category}</div>
-        ${tasks
-          .map(
-            (task) => `
-              <article class="task-card ${task.done ? "locked" : ""}">
-                <div class="task-header">
-                  <strong>${task.icon} ${task.title}</strong>
-                  <span class="task-reward">💎 +${formatTon(task.reward, 3)}</span>
-                </div>
-                <div class="tiny">${task.description}</div>
-                <button class="action-btn ${task.done ? "secondary" : "blue"} block" data-task="${task.id}" ${
-                  task.done ? "disabled" : ""
-                }>
-                  ${task.done ? "Completed" : "Join"}
-                </button>
-              </article>
-            `
-          )
-          .join("")}
-      `;
-    })
-    .join("");
+  const friendTasks = state.tasks.slice(0, 3);
+  const bonusTask = state.tasks[3];
+  const taskRow = (task) => {
+    const percent = Math.max(0, Math.min(100, (task.current / task.target) * 100));
+    return `
+      <article class="task-row">
+        <div class="task-icon">${task.icon}</div>
+        <div class="task-body">
+          <strong>${task.title}</strong>
+          <p>Reward: ${formatNumber(task.rewardGpu, 0)} GPU</p>
+          <div class="progress-track"><span style="width:${percent}%"></span></div>
+        </div>
+        <button class="chip-progress" data-task="${task.id}">${task.current} / ${task.target}</button>
+      </article>
+    `;
+  };
 
   return `
-    <section class="wallet-card">
-      <h2 class="panel-title">Tasks</h2>
-      <p class="panel-subtitle">Complete missions to earn TON.</p>
-      <div class="premium-price">
-        <span>Available rewards</span>
-        <b>+${formatTon(getAvailableTaskReward(), 4)}</b>
-      </div>
-    </section>
-    ${content}
-  `;
-}
-
-function renderFriendsView() {
-  const referralRevenue = state.referrals * state.perInviteReward;
-  const inviteLink = `https://t.me/DucksEmpire_Bot?start=${state.inviteCode}`;
-  return `
-    <section class="referral-card">
-      <h2 class="panel-title">Referrals</h2>
-      <p class="panel-subtitle">Earn from every friend you invite.</p>
-      <div class="referral-grid">
-        <article class="ref-mini">
-          <div class="tiny">Your referrals</div>
-          <div class="stat-value">${state.referrals}</div>
-          <div class="tiny">friends</div>
-        </article>
-        <article class="ref-mini">
-          <div class="tiny">Per invite</div>
-          <div class="stat-value">💎 ${formatTon(state.perInviteReward, 4)}</div>
-          <div class="tiny">TON reward</div>
-        </article>
-      </div>
-      <div class="panel-row">
-        <article class="panel-box">
-          <strong>10% Deposit Commission</strong>
-          <p class="tiny">Earn 10% of your referrals deposits automatically with no cap.</p>
-        </article>
-      </div>
-      <div class="section-title">How it works</div>
-      <div class="referral-grid">
-        <article class="ref-mini"><strong>Invite</strong><div class="tiny">Friend joins via your link</div></article>
-        <article class="ref-mini"><strong>Earn</strong><div class="tiny">Get TON bonus instantly</div></article>
-        <article class="ref-mini"><strong>Commission</strong><div class="tiny">10% of their deposits</div></article>
-        <article class="ref-mini"><strong>Tasks</strong><div class="tiny">Unlock referral milestones</div></article>
-      </div>
-      <div class="section-title">Your invite link</div>
-      <div class="invite-box">
-        <span class="invite-link">${inviteLink}</span>
-        <button id="copyInvite" class="action-btn secondary">Copy</button>
-      </div>
-      <div class="panel-row">
-        <button id="shareTelegram" class="action-btn primary block">Share to Telegram</button>
-        <button id="simulateReferral" class="action-btn secondary block">+1</button>
-      </div>
-    </section>
-    <section class="wallet-card">
-      <h3>Referral income snapshot</h3>
-      <p class="subtitle">Current bonus pool: ${formatTon(referralRevenue, 4)} TON</p>
+    ${renderTopPanel()}
+    <section class="panel">
+      <h2 class="section-heading center">Complete Tasks to<br />earn more</h2>
+      <div class="task-group-title">FRIENDS</div>
+      ${friendTasks.map((task) => taskRow(task)).join("")}
+      <div class="task-group-title">TOP UP BONUS</div>
+      ${taskRow(bonusTask)}
     </section>
   `;
 }
 
-function renderPremiumView() {
-  const activePlan = getActivePlan();
-  const cards = premiumPlans
-    .map((plan) => {
-      const active = plan.id === state.premiumPlan;
-      return `
-        <article class="premium-card">
-          <div class="task-header">
-            <h3>${plan.name}</h3>
-            <span class="task-reward">${plan.badge}</span>
-          </div>
-          <div class="tiny">${plan.period}</div>
-          <div class="premium-price">
-            <span>Price</span>
-            <b>${formatTon(plan.price, 2)} TON</b>
-          </div>
-          <div class="tiny">Was: <s>${formatTon(plan.oldPrice, 2)} TON</s></div>
-          <ul class="premium-list">
-            ${plan.perks.map((perk) => `<li>${perk}</li>`).join("")}
-          </ul>
-          <button class="action-btn primary block" data-subscribe="${plan.id}" ${active ? "disabled" : ""}>
-            ${active ? "Current plan" : `Subscribe - ${formatTon(plan.price, 2)} TON`}
-          </button>
-        </article>
-      `;
-    })
-    .join("");
+function renderEarnView() {
+  const incomePerHour = getDailyProfitHashes() / 24;
+  const history = state.operations.length
+    ? state.operations
+        .map(
+          (op) => `
+            <div class="op-row">
+              <div><strong>${op.type}</strong><p>${op.time}</p></div>
+              <span class="${op.amount >= 0 ? "plus" : "minus"}">${op.amount >= 0 ? "+" : ""}${formatNumber(op.amount, 4)}</span>
+            </div>`
+        )
+        .join("")
+    : `<p class="section-caption">Henüz işlem yok.</p>`;
 
   return `
-    <section class="wallet-card">
-      <h2 class="panel-title">Premium Access</h2>
-      <p class="panel-subtitle">Boost earnings and automate your profit growth.</p>
-      <div class="premium-price">
-        <span>Active status</span>
-        <b>${activePlan?.name || "Free Plan"}</b>
+    ${renderTopPanel()}
+    <section class="panel">
+      <h2 class="section-heading">Earnings center</h2>
+      <div class="metrics-grid">
+        <div class="metric-box"><span>Per hour</span><strong>${formatNumber(incomePerHour, 2)} Hash</strong></div>
+        <div class="metric-box"><span>Per day</span><strong>${formatNumber(getDailyProfitHashes(), 2)} Hash</strong></div>
+        <div class="metric-box"><span>Mined</span><strong>${formatNumber(state.minedHashes, 5)} Hash</strong></div>
+        <div class="metric-box"><span>Power</span><strong>${formatNumber(state.powerGpu, 0)} GPU</strong></div>
       </div>
-      <p class="tiny">Current multiplier: x${formatTon(getBoostMultiplier(), 2)}</p>
+      <div class="row-btns">
+        <button id="claimEarnBtn" class="primary-btn">Claim small mine</button>
+        <button id="jumpMinerBtn" class="ghost-btn">Go Miner</button>
+      </div>
     </section>
-    ${cards}
+    <section class="panel">
+      <h3 class="section-heading">Recent activity</h3>
+      ${history}
+    </section>
   `;
 }
 
-function renderCurrentView() {
-  switch (state.activeTab) {
-    case "wallet":
-      return renderWalletView();
-    case "tasks":
-      return renderTasksView();
-    case "friends":
-      return renderFriendsView();
-    case "premium":
-      return renderPremiumView();
-    case "empire":
-    default:
-      return renderEmpireView();
+function renderView() {
+  if (state.activeTab === "power") return renderPowerView();
+  if (state.activeTab === "earn") return renderEarnView();
+  if (state.activeTab === "miner") return renderMinerView();
+  if (state.activeTab === "withdraw") return renderWithdrawView();
+  return renderTasksView();
+}
+
+function bindPowerActions() {
+  const usdInput = document.getElementById("usdAmount");
+  const buyButton = document.getElementById("buyPowerBtn");
+  const unlockButton = document.getElementById("unlockBtn");
+  if (usdInput) {
+    usdInput.addEventListener("input", () => {
+      state.spendUsd = Number(usdInput.value || 0);
+      render();
+    });
+  }
+  if (buyButton) buyButton.addEventListener("click", buyPower);
+  if (unlockButton) {
+    unlockButton.addEventListener("click", () => {
+      const need = (state.machineLevel + 1) * 226400;
+      if (state.powerGpu >= need) {
+        state.machineLevel += 1;
+        showToast(`Machine LV.${state.machineLevel} unlocked`);
+      } else {
+        showToast(`Need ${formatNumber(need - state.powerGpu, 0)} GPU more`);
+      }
+      render();
+    });
   }
 }
 
-function bindEmpireActions() {
-  viewContainer.querySelectorAll("[data-hire]").forEach((button) => {
+function bindMinerActions() {
+  const exchangeBtn = document.getElementById("exchangeBtn");
+  const simulateMineBtn = document.getElementById("simulateMineBtn");
+  const jumpPower = document.querySelector("[data-tab-jump='power']");
+  if (exchangeBtn) exchangeBtn.addEventListener("click", exchangeHashes);
+  if (simulateMineBtn) simulateMineBtn.addEventListener("click", simulateEarn);
+  if (jumpPower) {
+    jumpPower.addEventListener("click", () => switchTab("power"));
+  }
+}
+
+function bindWithdrawActions() {
+  viewContainer.querySelectorAll("[data-method]").forEach((button) => {
     button.addEventListener("click", () => {
-      const level = Number(button.getAttribute("data-hire"));
-      hireWorker(level);
+      state.selectedWithdraw = button.getAttribute("data-method") || "TON";
+      render();
     });
   });
+  const withdrawBtn = document.getElementById("withdrawBtn");
+  if (withdrawBtn) withdrawBtn.addEventListener("click", requestWithdraw);
+  const moreDetails = document.querySelector("[data-tab-jump='power']");
+  if (moreDetails) moreDetails.addEventListener("click", () => switchTab("power"));
 }
 
-function bindWalletActions() {
-  const amountInput = document.getElementById("walletAmount");
-  const depositButton = document.getElementById("depositBtn");
-  const withdrawButton = document.getElementById("withdrawBtn");
-  if (!amountInput || !depositButton || !withdrawButton) return;
-  const value = () => Number(amountInput.value.replace(",", "."));
-  depositButton.addEventListener("click", () => deposit(value()));
-  withdrawButton.addEventListener("click", () => withdraw(value()));
-}
-
-function bindTaskActions() {
+function bindTasksActions() {
   viewContainer.querySelectorAll("[data-task]").forEach((button) => {
     button.addEventListener("click", () => {
       const taskId = button.getAttribute("data-task");
@@ -548,75 +428,62 @@ function bindTaskActions() {
   });
 }
 
-function bindFriendsActions() {
-  const copyButton = document.getElementById("copyInvite");
-  const shareButton = document.getElementById("shareTelegram");
-  const simulateButton = document.getElementById("simulateReferral");
-
-  if (copyButton) {
-    copyButton.addEventListener("click", async () => {
-      const link = viewContainer.querySelector(".invite-link")?.textContent || "";
-      try {
-        await navigator.clipboard.writeText(link);
-        showToast("Invite link copied");
-      } catch (_error) {
-        showToast("Copy is not supported");
-      }
-    });
-  }
-  if (shareButton) {
-    shareButton.addEventListener("click", () => {
-      const link = viewContainer.querySelector(".invite-link")?.textContent || "";
-      window.open(`https://t.me/share/url?url=${encodeURIComponent(link)}`, "_blank", "noopener,noreferrer");
-    });
-  }
-  if (simulateButton) {
-    simulateButton.addEventListener("click", () => simulateReferral());
-  }
-}
-
-function bindPremiumActions() {
-  viewContainer.querySelectorAll("[data-subscribe]").forEach((button) => {
-    button.addEventListener("click", () => {
-      const planId = button.getAttribute("data-subscribe");
-      if (!planId) return;
-      subscribeToPlan(planId);
-    });
-  });
+function bindEarnActions() {
+  const claim = document.getElementById("claimEarnBtn");
+  const goMiner = document.getElementById("jumpMinerBtn");
+  if (claim) claim.addEventListener("click", simulateEarn);
+  if (goMiner) goMiner.addEventListener("click", () => switchTab("miner"));
 }
 
 function bindViewActions() {
-  if (state.activeTab === "empire") bindEmpireActions();
-  if (state.activeTab === "wallet") bindWalletActions();
-  if (state.activeTab === "tasks") bindTaskActions();
-  if (state.activeTab === "friends") bindFriendsActions();
-  if (state.activeTab === "premium") bindPremiumActions();
+  if (state.activeTab === "power") bindPowerActions();
+  if (state.activeTab === "miner") bindMinerActions();
+  if (state.activeTab === "withdraw") bindWithdrawActions();
+  if (state.activeTab === "tasks") bindTasksActions();
+  if (state.activeTab === "earn") bindEarnActions();
+}
+
+function switchTab(tab) {
+  document.querySelector(".nav-item.active")?.classList.remove("active");
+  const next = document.querySelector(`.nav-item[data-tab='${tab}']`);
+  if (next) next.classList.add("active");
+  state.activeTab = tab;
+  haptic("light");
+  render();
 }
 
 function render() {
-  balanceLabel.textContent = formatTon(state.balance, 4);
-  viewContainer.innerHTML = renderCurrentView();
+  balanceLabel.textContent = formatNumber(state.balance, 6);
+  viewContainer.innerHTML = renderView();
   bindViewActions();
 }
 
-function initNav() {
-  document.querySelectorAll(".nav-item").forEach((item) => {
-    item.addEventListener("click", () => {
-      document.querySelector(".nav-item.active")?.classList.remove("active");
-      item.classList.add("active");
-      state.activeTab = item.getAttribute("data-tab") || "empire";
-      haptic("light");
-      render();
+function initNavigation() {
+  document.querySelectorAll(".nav-item").forEach((button) => {
+    button.addEventListener("click", () => {
+      switchTab(button.getAttribute("data-tab") || "power");
     });
   });
 }
 
-function initQuickDeposit() {
+function initTopActions() {
   const quickDeposit = document.getElementById("quickDeposit");
   if (!quickDeposit) return;
-  quickDeposit.addEventListener("click", () => deposit(0.25));
+  quickDeposit.addEventListener("click", () => {
+    state.balance += 0.03;
+    pushOperation("Quick top up", 0.03);
+    showToast("Balance topped up +0.03");
+    render();
+  });
 }
 
-initNav();
-initQuickDeposit();
+window.setInterval(() => {
+  if (state.activeTab === "miner") {
+    const clock = document.getElementById("miningClock");
+    if (clock) clock.textContent = formatTimer(getMiningElapsedSeconds());
+  }
+}, 1000);
+
+initNavigation();
+initTopActions();
 render();
