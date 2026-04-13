@@ -7,21 +7,29 @@
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
+    <div class="app-bg"></div>
     <div class="app-shell">
-      <header class="top-header">
-        <button class="icon-btn" aria-label="Kapat">✕</button>
+      <header class="top-header glass">
+        <button class="icon-btn subtle" aria-label="Kapat">✕</button>
         <h1>Duck's Empire</h1>
-        <button class="icon-btn" aria-label="Menü">⋮</button>
+        <div class="header-actions">
+          <button class="icon-btn subtle" aria-label="Açılır Menü">⌄</button>
+          <button class="icon-btn subtle" aria-label="Menü">⋮</button>
+        </div>
       </header>
 
       <section class="status-bar">
         <div class="left-controls">
-          <button class="chip ghost">☰</button>
-          <button class="chip ghost">🇹🇷 TR</button>
+          <button class="chip ghost soft-btn">☰</button>
+          <button class="chip ghost">
+            <span class="flag">🇬🇧</span>
+            <span>EN</span>
+          </button>
         </div>
         <div class="right-controls">
           <div class="chip balance-chip">
-            <span>💎</span>
+            <span class="ton-mark">💎</span>
+            <small>BALANCE</small>
             <span id="balanceValue">0.0015</span>
           </div>
           <button class="chip add-chip" id="quickDeposit">＋</button>
@@ -31,11 +39,26 @@
       <main id="viewContainer" class="view-container"></main>
 
       <nav class="bottom-nav">
-        <button class="nav-item" data-tab="wallet">Cüzdan</button>
-        <button class="nav-item" data-tab="tasks">Görevler</button>
-        <button class="nav-item active" data-tab="empire">Empire</button>
-        <button class="nav-item" data-tab="friends">Arkadaşlar</button>
-        <button class="nav-item" data-tab="premium">Premium</button>
+        <button class="nav-item" data-tab="wallet">
+          <span class="nav-icon">▣</span>
+          <span class="nav-label">Wallet</span>
+        </button>
+        <button class="nav-item" data-tab="tasks">
+          <span class="nav-icon">☰</span>
+          <span class="nav-label">Tasks</span>
+        </button>
+        <button class="nav-item active crown-tab" data-tab="empire">
+          <span class="nav-icon">♛</span>
+          <span class="nav-label">Empire</span>
+        </button>
+        <button class="nav-item" data-tab="friends">
+          <span class="nav-icon">◍</span>
+          <span class="nav-label">Friends</span>
+        </button>
+        <button class="nav-item" data-tab="premium">
+          <span class="nav-icon">☆</span>
+          <span class="nav-label">Premium</span>
+        </button>
       </nav>
     </div>
 
