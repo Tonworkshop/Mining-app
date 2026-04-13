@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Duck's Empire - Telegram Web App</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="top-header">
+        <button class="icon-btn" aria-label="Kapat">✕</button>
+        <h1>Duck's Empire</h1>
+        <button class="icon-btn" aria-label="Menü">⋮</button>
+      </header>
+
+      <section class="status-bar">
+        <div class="left-controls">
+          <button class="chip ghost">☰</button>
+          <button class="chip ghost">🇹🇷 TR</button>
+        </div>
+        <div class="right-controls">
+          <div class="chip balance-chip">
+            <span>💎</span>
+            <span id="balanceValue">0.0015</span>
+          </div>
+          <button class="chip add-chip" id="quickDeposit">＋</button>
+        </div>
+      </section>
+
+      <main id="viewContainer" class="view-container"></main>
+
+      <nav class="bottom-nav">
+        <button class="nav-item" data-tab="wallet">Cüzdan</button>
+        <button class="nav-item" data-tab="tasks">Görevler</button>
+        <button class="nav-item active" data-tab="empire">Empire</button>
+        <button class="nav-item" data-tab="friends">Arkadaşlar</button>
+        <button class="nav-item" data-tab="premium">Premium</button>
+      </nav>
+    </div>
+
+    <div id="toast" class="toast"></div>
+
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
