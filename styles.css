@@ -46,31 +46,18 @@ body {
 }
 
 .top-header {
-  height: 54px;
+  height: 44px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  margin-bottom: 2px;
 }
 
 .top-header h1 {
   margin: 0;
-  font-size: 38px;
-  font-weight: 800;
-  letter-spacing: -0.8px;
-}
-
-.top-actions {
-  display: flex;
-  gap: 2px;
-}
-
-.icon-btn {
-  border: 0;
-  background: transparent;
-  color: var(--text);
   font-size: 26px;
-  width: 30px;
-  height: 30px;
+  font-weight: 800;
+  letter-spacing: -0.2px;
 }
 
 .status-bar {
@@ -159,16 +146,16 @@ body {
 
 .hero-card h2 {
   margin: 0;
-  font-size: 52px;
-  line-height: 0.96;
-  letter-spacing: -1.2px;
+  font-size: 36px;
+  line-height: 1;
+  letter-spacing: -0.6px;
 }
 
 .hero-card p {
   margin: 4px 0 0;
   color: #d8e4ef;
-  font-size: 18px;
-  font-weight: 600;
+  font-size: 13px;
+  font-weight: 500;
 }
 
 .power-panel,
@@ -205,9 +192,10 @@ body {
 
 .calc-title {
   margin-top: 8px;
-  font-size: 33px;
+  font-size: 18px;
   font-weight: 800;
   text-align: center;
+  letter-spacing: 0.6px;
 }
 
 .calc-card {
@@ -225,7 +213,7 @@ body {
   justify-content: space-between;
   align-items: baseline;
   gap: 10px;
-  font-size: 15px;
+  font-size: 13px;
 }
 
 .calc-row strong {
@@ -282,13 +270,14 @@ body {
 
 .unlock-panel h3 {
   margin: 0;
-  font-size: 45px;
-  line-height: 0.96;
+  font-size: 25px;
+  line-height: 1.05;
 }
 
 .unlock-panel p {
   margin: 6px 0 0;
   color: #cdd8e2;
+  font-size: 13px;
 }
 
 .machine-art {
@@ -305,60 +294,122 @@ body {
 }
 
 .machine-art.big {
-  min-height: 142px;
-}
-
-.miner-timer {
-  text-align: center;
-  padding: 8px;
-}
-
-.miner-timer span {
-  display: block;
-  color: #c2ced9;
-  letter-spacing: 1px;
-  font-size: 12px;
-}
-
-.miner-timer strong {
-  font-size: 62px;
-  letter-spacing: -1px;
-  line-height: 1;
+  min-height: 126px;
 }
 
 .machine-panel {
   padding: 10px;
 }
 
-.hash-pill {
-  margin: 8px auto 0;
-  width: fit-content;
-  border-radius: 10px;
-  border: 1px solid #4a5868;
-  background: #171d24;
-  padding: 6px 12px;
+.mining-system-panel {
+  padding: 12px;
+}
+
+.system-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.system-title {
+  font-size: 18px;
   font-weight: 800;
-  font-size: 37px;
+  letter-spacing: 0.2px;
+}
+
+.system-subtitle {
+  margin: 3px 0 0;
+  color: #b5c5d2;
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.system-status {
+  border: 1px solid #3f5a6f;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #284152, #203544);
+  color: #8ee2ff;
+  padding: 5px 10px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.system-metrics {
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.system-metrics article {
+  border: 1px solid #435364;
+  border-radius: 10px;
+  background: linear-gradient(180deg, #28323d, #202732);
+  padding: 8px;
+}
+
+.system-metrics strong {
+  display: block;
+  color: #a8bac7;
+  font-size: 11px;
+  letter-spacing: 0.3px;
+}
+
+.system-metrics span {
+  display: block;
+  margin-top: 3px;
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.system-progress {
+  margin-top: 11px;
+}
+
+.system-progress-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color: #b7c8d5;
+  margin-bottom: 5px;
+}
+
+.system-progress-head b {
+  color: #79d7ff;
+  font-size: 13px;
 }
 
 .stats-line {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 22px;
+  font-size: 15px;
   font-weight: 700;
   margin-top: 6px;
 }
 
 .stats-line strong {
-  font-size: 42px;
-  letter-spacing: -0.6px;
+  font-size: 26px;
+  letter-spacing: -0.2px;
+}
+
+.stats-line.compact {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #3a4b59;
+  font-size: 13px;
+}
+
+.stats-line.compact strong {
+  font-size: 17px;
 }
 
 .footnote {
   margin: 8px 0 0;
   color: #b2bfca;
-  font-size: 13px;
+  font-size: 12px;
 }
 
 .row-btns {
@@ -366,6 +417,79 @@ body {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 8px;
+}
+
+.mining-core {
+  display: grid;
+  gap: 10px;
+}
+
+.system-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 12px;
+}
+
+.system-row small {
+  color: #9fb2c2;
+  font-size: 11px;
+  letter-spacing: 0.7px;
+}
+
+.system-row strong {
+  display: block;
+  margin-top: 2px;
+  font-size: 17px;
+}
+
+.status-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #42dd89;
+  box-shadow: 0 0 12px rgba(66, 221, 137, 0.7);
+}
+
+.mining-gauge {
+  width: 100%;
+  height: 9px;
+  border-radius: 999px;
+  background: #3c4956;
+  overflow: hidden;
+}
+
+.mining-gauge > span {
+  display: block;
+  height: 100%;
+  width: 64%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #45d0ff, #2aa0de);
+}
+
+.mining-metrics {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+}
+
+.metric-chip {
+  border: 1px solid #455466;
+  border-radius: 10px;
+  background: linear-gradient(180deg, #2a3340, #202833);
+  padding: 8px;
+}
+
+.metric-chip span {
+  color: #b4c2ce;
+  font-size: 10px;
+  letter-spacing: 0.5px;
+}
+
+.metric-chip strong {
+  display: block;
+  margin-top: 3px;
+  font-size: 18px;
 }
 
 .task-mini {
@@ -413,9 +537,9 @@ body {
 
 .section-heading {
   margin: 0;
-  font-size: 52px;
-  letter-spacing: -1px;
-  line-height: 0.95;
+  font-size: 30px;
+  letter-spacing: -0.4px;
+  line-height: 1.02;
 }
 
 .section-heading.center {
@@ -425,7 +549,7 @@ body {
 .section-caption {
   margin: 5px 0 0;
   color: #cdd7e1;
-  font-size: 18px;
+  font-size: 13px;
 }
 
 .methods-grid {
@@ -456,7 +580,7 @@ body {
 }
 
 .method-head strong {
-  font-size: 31px;
+  font-size: 20px;
 }
 
 .method-sub {
@@ -491,7 +615,7 @@ body {
   margin: 11px 0 6px;
   color: #5dcfff;
   letter-spacing: 2px;
-  font-size: 18px;
+  font-size: 13px;
   font-weight: 800;
 }
 
@@ -509,13 +633,13 @@ body {
 
 .task-body strong {
   display: block;
-  font-size: 22px;
+  font-size: 15px;
 }
 
 .task-body p {
   margin: 1px 0 6px;
   color: #bec9d3;
-  font-size: 13px;
+  font-size: 12px;
 }
 
 .progress-track {
@@ -554,7 +678,7 @@ body {
 .metric-box strong {
   display: block;
   margin-top: 3px;
-  font-size: 25px;
+  font-size: 17px;
 }
 
 .op-row {
@@ -670,21 +794,21 @@ body {
 
 @media (max-width: 420px) {
   .top-header h1 {
-    font-size: 32px;
+    font-size: 24px;
   }
 
   .hero-card h2,
   .section-heading {
-    font-size: 43px;
+    font-size: 27px;
   }
 
   .hero-card p,
   .section-caption {
-    font-size: 15px;
+    font-size: 12px;
   }
 
   .balance-chip #balanceValue {
-    font-size: 30px;
+    font-size: 23px;
   }
 
   .task-row {

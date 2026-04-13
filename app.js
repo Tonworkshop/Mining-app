@@ -7,13 +7,17 @@ if (tg) {
 }
 
 const state = {
-  activeTab: "power",
+  activeTab: "miner",
   balance: 0.058024,
   powerGpu: 30000,
   minedHashes: 181.53673,
+  hashRate: 10,
+  miningStatus: "Stable",
+  miningUptimeHours: 12.6,
+  activeWorkers: 6,
+  efficiency: 97.4,
   spendUsd: 3,
   firstDepositBonus: true,
-  startTime: Date.now(),
   machineLevel: 1,
   selectedWithdraw: "TON",
   tasks: [
@@ -89,17 +93,6 @@ function getMonthlyProfitHashes() {
 
 function getSixMonthProfitHashes() {
   return getMonthlyProfitHashes() * 6;
-}
-
-function getMiningElapsedSeconds() {
-  return Math.floor((Date.now() - state.startTime) / 1000);
-}
-
-function formatTimer(seconds) {
-  const h = String(Math.floor(seconds / 3600)).padStart(2, "0");
-  const m = String(Math.floor((seconds % 3600) / 60)).padStart(2, "0");
-  const s = String(seconds % 60).padStart(2, "0");
-  return `${h}:${m}:${s}`;
 }
 
 function buyPower() {
@@ -185,11 +178,27 @@ function completeTask(taskId) {
   render();
 }
 
+function getViewTitle() {
+  if (state.activeTab === "power") return "Power Shop";
+  if (state.activeTab === "earn") return "Earnings";
+  if (state.activeTab === "miner") return "Mining Center";
+  if (state.activeTab === "withdraw") return "Withdraw";
+  return "Tasks";
+}
+
+function getViewDescription() {
+  if (state.activeTab === "power") return "Enter the sum you want to use for buying mining power.";
+  if (state.activeTab === "earn") return "Track rewards and operation history.";
+  if (state.activeTab === "miner") return "Professional mining system with stable 10 H/s output.";
+  if (state.activeTab === "withdraw") return "Choose a secure and convenient payout method.";
+  return "Complete tasks to increase mining capacity.";
+}
+
 function renderTopPanel() {
   return `
     <section class="hero-card">
-      <h2>${state.activeTab === "power" ? "Power Shop" : state.activeTab.charAt(0).toUpperCase() + state.activeTab.slice(1)}</h2>
-      <p>${state.activeTab === "power" ? "Enter the sum you want to use for buying mining power." : "High performance mining control panel."}</p>
+      <h2>${getViewTitle()}</h2>
+      <p>${getViewDescription()}</p>
     </section>
   `;
 }
@@ -229,22 +238,52 @@ function renderPowerView() {
 function renderMinerView() {
   return `
     ${renderTopPanel()}
-    <section class="panel miner-timer">
-      <span>MINING STARTED</span>
-      <strong id="miningClock">${formatTimer(getMiningElapsedSeconds())}</strong>
+    <section class="panel mining-system-panel">
+      <div class="system-head">
+        <div>
+          <div class="system-title">Mining Core</div>
+          <p class="system-subtitle">Automated node routing and risk-safe balancing active</p>
+        </div>
+        <span class="system-status">${state.miningStatus}</span>
+      </div>
+      <div class="system-metrics">
+        <article>
+          <strong>Network Rate</strong>
+          <span>${state.hashRate} H/s</span>
+        </article>
+        <article>
+          <strong>Efficiency</strong>
+          <span>${formatNumber(state.efficiency, 1)}%</span>
+        </article>
+        <article>
+          <strong>Workers</strong>
+          <span>${state.activeWorkers}</span>
+        </article>
+        <article>
+          <strong>Uptime</strong>
+          <span>${formatNumber(state.miningUptimeHours, 1)}h</span>
+        </article>
+      </div>
+      <div class="system-progress">
+        <div class="system-progress-head">
+          <span>Node synchronization</span>
+          <b>${formatNumber(state.efficiency, 1)}%</b>
+        </div>
+        <div class="progress-track"><span style="width:${state.efficiency}%"></span></div>
+      </div>
     </section>
     <section class="panel machine-panel">
       <div class="machine-art big">⚙</div>
-      <div class="hash-pill">${formatNumber(state.minedHashes, 5)} Hashes</div>
+      <div class="rate-pill">${state.hashRate} H/s</div>
     </section>
     <section class="panel">
       <div class="stats-line"><span>Current power</span><strong>${formatNumber(state.powerGpu, 0)} GPU</strong></div>
       <button class="accent-btn" data-tab-jump="power">Buy power in the store</button>
-      <p class="footnote">*Exchange Hashes to USDT to withdraw money</p>
-      <div class="stats-line"><span>Mined Hashes</span><strong>${formatNumber(state.minedHashes, 5)}</strong></div>
+      <p class="footnote">Mining is running continuously with smart load balancing.</p>
+      <div class="stats-line compact"><span>Live network rate</span><strong>${state.hashRate} H/s</strong></div>
       <div class="row-btns">
-        <button id="exchangeBtn" class="primary-btn">Exchange</button>
-        <button id="simulateMineBtn" class="ghost-btn">Mine +</button>
+        <button id="boostNodesBtn" class="primary-btn">Boost Nodes</button>
+        <button id="diagnoseBtn" class="ghost-btn">Diagnostics</button>
       </div>
     </section>
     <section class="panel">
@@ -395,11 +434,24 @@ function bindPowerActions() {
 }
 
 function bindMinerActions() {
-  const exchangeBtn = document.getElementById("exchangeBtn");
-  const simulateMineBtn = document.getElementById("simulateMineBtn");
+  const boostNodesBtn = document.getElementById("boostNodesBtn");
+  const diagnoseBtn = document.getElementById("diagnoseBtn");
   const jumpPower = document.querySelector("[data-tab-jump='power']");
-  if (exchangeBtn) exchangeBtn.addEventListener("click", exchangeHashes);
-  if (simulateMineBtn) simulateMineBtn.addEventListener("click", simulateEarn);
+  if (boostNodesBtn) {
+    boostNodesBtn.addEventListener("click", () => {
+      state.efficiency = Math.min(99.9, state.efficiency + 0.6);
+      state.miningUptimeHours += 0.2;
+      state.activeWorkers = Math.min(12, state.activeWorkers + 1);
+      showToast("Mining nodes boosted");
+      render();
+    });
+  }
+  if (diagnoseBtn) {
+    diagnoseBtn.addEventListener("click", () => {
+      haptic("medium");
+      showToast("System diagnostics: all nodes healthy");
+    });
+  }
   if (jumpPower) {
     jumpPower.addEventListener("click", () => switchTab("power"));
   }
@@ -476,13 +528,6 @@ function initTopActions() {
     render();
   });
 }
-
-window.setInterval(() => {
-  if (state.activeTab === "miner") {
-    const clock = document.getElementById("miningClock");
-    if (clock) clock.textContent = formatTimer(getMiningElapsedSeconds());
-  }
-}, 1000);
 
 initNavigation();
 initTopActions();
