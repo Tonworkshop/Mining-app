@@ -297,35 +297,33 @@ body {
   min-height: 126px;
 }
 
-.machine-panel {
-  padding: 10px;
-}
-
-.mining-system-panel {
+.live-miner-panel {
   padding: 12px;
+  display: grid;
+  gap: 10px;
 }
 
-.system-head {
+.live-miner-head {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   gap: 10px;
 }
 
-.system-title {
+.live-title {
   font-size: 18px;
   font-weight: 800;
   letter-spacing: 0.2px;
 }
 
-.system-subtitle {
+.live-subtitle {
   margin: 3px 0 0;
   color: #b5c5d2;
   font-size: 12px;
   line-height: 1.35;
 }
 
-.system-status {
+.live-badge {
   border: 1px solid #3f5a6f;
   border-radius: 999px;
   background: linear-gradient(180deg, #284152, #203544);
@@ -335,36 +333,55 @@ body {
   font-weight: 700;
 }
 
-.system-metrics {
-  margin-top: 10px;
+.miner-visual {
+  border: 1px solid #435364;
+  border-radius: 12px;
+  background: radial-gradient(circle at 50% 40%, rgba(64, 172, 227, 0.2), rgba(30, 43, 56, 0.8));
+  min-height: 132px;
+  display: grid;
+  place-items: center;
+}
+
+.miner-rotor {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  border: 2px solid rgba(90, 201, 248, 0.35);
+  border-top-color: #59caf7;
+  border-right-color: #2f98da;
+  box-shadow: 0 0 22px rgba(80, 180, 230, 0.22);
+  animation: spin-rotor 2.6s linear infinite;
+}
+
+.live-metrics {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 8px;
 }
 
-.system-metrics article {
+.live-metrics article {
   border: 1px solid #435364;
   border-radius: 10px;
   background: linear-gradient(180deg, #28323d, #202732);
   padding: 8px;
 }
 
-.system-metrics strong {
+.live-metrics small {
   display: block;
   color: #a8bac7;
   font-size: 11px;
   letter-spacing: 0.3px;
 }
 
-.system-metrics span {
+.live-metrics strong {
   display: block;
   margin-top: 3px;
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 800;
 }
 
 .system-progress {
-  margin-top: 11px;
+  margin-top: 2px;
 }
 
 .system-progress-head {
@@ -379,6 +396,10 @@ body {
 .system-progress-head b {
   color: #79d7ff;
   font-size: 13px;
+}
+
+.miner-actions-panel {
+  padding: 12px;
 }
 
 .stats-line {
@@ -419,77 +440,14 @@ body {
   gap: 8px;
 }
 
-.mining-core {
-  display: grid;
-  gap: 10px;
-}
+@keyframes spin-rotor {
+  from {
+    transform: rotate(0deg);
+  }
 
-.system-row {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: center;
-  gap: 12px;
-}
-
-.system-row small {
-  color: #9fb2c2;
-  font-size: 11px;
-  letter-spacing: 0.7px;
-}
-
-.system-row strong {
-  display: block;
-  margin-top: 2px;
-  font-size: 17px;
-}
-
-.status-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: #42dd89;
-  box-shadow: 0 0 12px rgba(66, 221, 137, 0.7);
-}
-
-.mining-gauge {
-  width: 100%;
-  height: 9px;
-  border-radius: 999px;
-  background: #3c4956;
-  overflow: hidden;
-}
-
-.mining-gauge > span {
-  display: block;
-  height: 100%;
-  width: 64%;
-  border-radius: inherit;
-  background: linear-gradient(90deg, #45d0ff, #2aa0de);
-}
-
-.mining-metrics {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 8px;
-}
-
-.metric-chip {
-  border: 1px solid #455466;
-  border-radius: 10px;
-  background: linear-gradient(180deg, #2a3340, #202833);
-  padding: 8px;
-}
-
-.metric-chip span {
-  color: #b4c2ce;
-  font-size: 10px;
-  letter-spacing: 0.5px;
-}
-
-.metric-chip strong {
-  display: block;
-  margin-top: 3px;
-  font-size: 18px;
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .task-mini {

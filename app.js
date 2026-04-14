@@ -12,10 +12,8 @@ const state = {
   powerGpu: 30000,
   minedHashes: 181.53673,
   hashRate: 10,
-  miningStatus: "Stable",
-  miningUptimeHours: 12.6,
-  activeWorkers: 6,
-  efficiency: 97.4,
+  nodeHealth: 97.4,
+  activeNodes: 6,
   spendUsd: 3,
   firstDepositBonus: true,
   machineLevel: 1,
@@ -181,7 +179,7 @@ function completeTask(taskId) {
 function getViewTitle() {
   if (state.activeTab === "power") return "Power Shop";
   if (state.activeTab === "earn") return "Earnings";
-  if (state.activeTab === "miner") return "Mining Center";
+  if (state.activeTab === "miner") return "Miner";
   if (state.activeTab === "withdraw") return "Withdraw";
   return "Tasks";
 }
@@ -189,7 +187,7 @@ function getViewTitle() {
 function getViewDescription() {
   if (state.activeTab === "power") return "Enter the sum you want to use for buying mining power.";
   if (state.activeTab === "earn") return "Track rewards and operation history.";
-  if (state.activeTab === "miner") return "Professional mining system with stable 10 H/s output.";
+  if (state.activeTab === "miner") return "Live mining operations and performance overview.";
   if (state.activeTab === "withdraw") return "Choose a secure and convenient payout method.";
   return "Complete tasks to increase mining capacity.";
 }
@@ -236,51 +234,50 @@ function renderPowerView() {
 }
 
 function renderMinerView() {
+  const dailyYieldTon = getDailyProfitHashes() / 200;
   return `
-    ${renderTopPanel()}
-    <section class="panel mining-system-panel">
-      <div class="system-head">
+    <section class="panel live-miner-panel">
+      <div class="live-miner-head">
         <div>
-          <div class="system-title">Mining Core</div>
-          <p class="system-subtitle">Automated node routing and risk-safe balancing active</p>
+          <div class="live-title">Active Mining</div>
+          <p class="live-subtitle">All nodes are synchronized and mining continuously.</p>
         </div>
-        <span class="system-status">${state.miningStatus}</span>
+        <span class="live-badge">ONLINE</span>
       </div>
-      <div class="system-metrics">
+      <div class="miner-visual">
+        <div class="miner-rotor"></div>
+      </div>
+      <div class="live-metrics">
         <article>
-          <strong>Network Rate</strong>
-          <span>${state.hashRate} H/s</span>
+          <small>Hash Rate</small>
+          <strong>${state.hashRate} H/s</strong>
         </article>
         <article>
-          <strong>Efficiency</strong>
-          <span>${formatNumber(state.efficiency, 1)}%</span>
+          <small>Node Health</small>
+          <strong>${formatNumber(state.nodeHealth, 1)}%</strong>
         </article>
         <article>
-          <strong>Workers</strong>
-          <span>${state.activeWorkers}</span>
+          <small>Active Nodes</small>
+          <strong>${state.activeNodes}</strong>
         </article>
         <article>
-          <strong>Uptime</strong>
-          <span>${formatNumber(state.miningUptimeHours, 1)}h</span>
+          <small>Daily Yield</small>
+          <strong>${formatNumber(dailyYieldTon, 3)} TON</strong>
         </article>
       </div>
       <div class="system-progress">
         <div class="system-progress-head">
           <span>Node synchronization</span>
-          <b>${formatNumber(state.efficiency, 1)}%</b>
+          <b>${formatNumber(state.nodeHealth, 1)}%</b>
         </div>
-        <div class="progress-track"><span style="width:${state.efficiency}%"></span></div>
+        <div class="progress-track"><span style="width:${state.nodeHealth}%"></span></div>
       </div>
     </section>
-    <section class="panel machine-panel">
-      <div class="machine-art big">⚙</div>
-      <div class="rate-pill">${state.hashRate} H/s</div>
-    </section>
-    <section class="panel">
+    <section class="panel miner-actions-panel">
       <div class="stats-line"><span>Current power</span><strong>${formatNumber(state.powerGpu, 0)} GPU</strong></div>
-      <button class="accent-btn" data-tab-jump="power">Buy power in the store</button>
-      <p class="footnote">Mining is running continuously with smart load balancing.</p>
       <div class="stats-line compact"><span>Live network rate</span><strong>${state.hashRate} H/s</strong></div>
+      <button class="accent-btn" data-tab-jump="power">Buy power in the store</button>
+      <p class="footnote">Mining process is running with adaptive load balancing and stable throughput.</p>
       <div class="row-btns">
         <button id="boostNodesBtn" class="primary-btn">Boost Nodes</button>
         <button id="diagnoseBtn" class="ghost-btn">Diagnostics</button>
@@ -439,9 +436,9 @@ function bindMinerActions() {
   const jumpPower = document.querySelector("[data-tab-jump='power']");
   if (boostNodesBtn) {
     boostNodesBtn.addEventListener("click", () => {
-      state.efficiency = Math.min(99.9, state.efficiency + 0.6);
-      state.miningUptimeHours += 0.2;
-      state.activeWorkers = Math.min(12, state.activeWorkers + 1);
+      state.nodeHealth = Math.min(99.9, state.nodeHealth + 0.4);
+      state.activeNodes = Math.min(12, state.activeNodes + 1);
+      state.minedHashes += 1.4;
       showToast("Mining nodes boosted");
       render();
     });
